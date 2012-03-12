@@ -6,18 +6,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureSqlBackups.Tests", "AzureSqlBackups.Tests\AzureSqlBackups.Tests.csproj", "{6EDE4931-68A7-4F7D-A5EB-75D1350C8941}"
 EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 3
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = http://devsvr1:8080/tfs/location3
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = AzureSqlBackups\\AzureSqlBackups.csproj
-		SccProjectName1 = AzureSqlBackups
-		SccLocalPath1 = AzureSqlBackups
-		SccProjectUniqueName2 = AzureSqlBackups.Tests\\AzureSqlBackups.Tests.csproj
-		SccProjectName2 = AzureSqlBackups.Tests
-		SccLocalPath2 = AzureSqlBackups.Tests
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
