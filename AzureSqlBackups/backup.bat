@@ -1,0 +1,1 @@
+SqlBackups.exe 1>>backup.log
