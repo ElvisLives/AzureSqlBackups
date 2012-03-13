@@ -1,4 +1,5 @@
 ## Overview 
+* Requires the dependent assemblies for the Daccli tool http://sqldacexamples.codeplex.com/wikipage?title=Required%20Assemblies%20Links
 
 This a little tool I wrote to automate Sql Azure backups via the DACCLI tool via a scheduled task.  It parses all the connection strings in the app.config for 
 Azure Connecton Strings, removes any .bacpac's on the local file system, removes blobs older than the NumberOfDaysToPersistBackups, 
@@ -34,3 +35,4 @@ it will retry 3 times to call DacClie.exe before giving up and moving on to the 
 Feel free to modify it, make it better, but tell me thanks if it saved you any time.  Im sure in the next quarter, they(Microsoft) will finally have an automated
 SQL Azure backup tool
 * It uses the Daccli tool from http://sqldacexamples.codeplex.com/releases
+* Requires assemblies from http://sqldacexamples.codeplex.com/wikipage?title=Required%20Assemblies%20Links
