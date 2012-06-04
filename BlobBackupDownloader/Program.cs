@@ -11,6 +11,8 @@ namespace BlobBackupDownloader
     {
         private const string AzureConnectionString = "AzureConnectionString";
         private const string PrefixForBlobs = "PrefixForBlobs";
+        private const string Retries = "Retries";
+        private const string TimeoutInMinutes = "TimeoutInMinutes";
 
         static void Main(string[] args)
         {
@@ -31,10 +33,13 @@ namespace BlobBackupDownloader
 
             Directory.GetFiles("/", "*.bacpac").ToList().ForEach(File.Delete);
 
+            int retries = Convert.ToInt32(ConfigurationManager.AppSettings[Retries]);
+            int timeoutInMinutes = Convert.ToInt32(ConfigurationManager.AppSettings[TimeoutInMinutes]);
+
             blobReference.DownloadToFile(fileName, new BlobRequestOptions
                                                        {
-                                                           RetryPolicy = RetryPolicies.Retry(3,new TimeSpan(0,0,0,30)),
-                                                           Timeout = new TimeSpan(0,30,0)
+                                                           RetryPolicy = RetryPolicies.Retry(retries, new TimeSpan(0, 0, 0, 30)),
+                                                           Timeout = new TimeSpan(0, timeoutInMinutes, 0)
                                                        });
 
             Console.Out.WriteLine("----Download Complete----");
