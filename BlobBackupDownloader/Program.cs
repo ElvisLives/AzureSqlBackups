@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Linq;
@@ -14,16 +15,22 @@ namespace BlobBackupDownloader
         private const string Retries = "Retries";
         private const string TimeoutInMinutes = "TimeoutInMinutes";
 
-        static void Main(string[] args)
+        static void Main()
         {
             CloudStorageAccount cloudStorageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings[AzureConnectionString]);
             var cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
 
-            IListBlobItem lastBlob = cloudBlobClient.ListBlobsWithPrefix(ConfigurationManager.AppSettings[PrefixForBlobs])
-                .OrderBy(x=>x.Container.Properties.LastModifiedUtc).Last();
+            List<IListBlobItem> blobs =
+                cloudBlobClient.ListBlobsWithPrefix(ConfigurationManager.AppSettings[PrefixForBlobs],
+                new BlobRequestOptions
+                    {
+                        UseFlatBlobListing = true,
+                        BlobListingDetails = BlobListingDetails.All
+                    }).ToList();
 
-            Console.Out.WriteLine("----Downloading From----");
-            Console.Out.WriteLine(lastBlob.Uri);
+            var lastBlob = blobs.OrderBy(x => x.Container.Properties.LastModifiedUtc).Last();
+
+            Console.Out.WriteLine("----Downloading From---- {0}", lastBlob.Uri);
 
             var blobReference = cloudBlobClient.GetBlobReference(lastBlob.Uri.ToString());
 
