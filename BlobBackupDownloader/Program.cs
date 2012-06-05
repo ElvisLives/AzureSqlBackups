@@ -43,7 +43,7 @@ namespace BlobBackupDownloader
 
             var fileName = lastBlob.Uri.ToString().Remove(0, removeUpTo);
 
-            Directory.GetFiles("/", "*.bacpac").ToList().ForEach(File.Delete);
+            Directory.GetFiles(Directory.GetCurrentDirectory(), "*.bacpac").ToList().ForEach(File.Delete);
 
             int retries = Convert.ToInt32(ConfigurationManager.AppSettings[Retries]);
             int timeoutInMinutes = Convert.ToInt32(ConfigurationManager.AppSettings[TimeoutInMinutes]);
