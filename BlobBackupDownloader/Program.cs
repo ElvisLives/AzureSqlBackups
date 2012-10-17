@@ -57,6 +57,11 @@ namespace BlobBackupDownloader
 
                 var fileName = lastBlob.Uri.ToString().Remove(0, removeUpTo);
 
+                if (File.Exists(fileName) == true)
+                {
+                    File.Delete(fileName);
+                }
+
                 blobReference.DownloadToFile(fileName, new BlobRequestOptions
                                                            {
                                                                RetryPolicy =
